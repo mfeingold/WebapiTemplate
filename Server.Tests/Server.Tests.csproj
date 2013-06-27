@@ -105,12 +105,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MvcTemplate\MvcTemplate.csproj">
-      <Project>{EEC44832-E071-40DB-AD55-FACB3E477B81}</Project>
-      <Name>MvcTemplate</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
