@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Validation;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Web.DataAccess;
@@ -19,9 +22,24 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             using (var db= new Repository()) {
-                var application = new Application() {URL = "something"};
+                var application = new Application() {Name = "something", Url = "http://something"};
                 db.Applications.Add(application);
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var e in ex.EntityValidationErrors)
+                    {
+
+                        
+                    }
+                    
+                    
+                }
+                
             }
         }
     }

@@ -9,8 +9,11 @@ namespace Web.DataAccess
 {
     public class Repository : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<ApplicationPermission> ApplicationPermissions { get; set; }
+        public Repository()
+            : base("UsersContext")
+        {
+        }
+
         public DbSet<Application> Applications { get; set; }
     }
 }
