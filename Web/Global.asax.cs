@@ -11,18 +11,11 @@ namespace Web
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            using (var db= new Repository()) {
-                var application = new Application() {URL = "something"};
-                db.Applications.Add(application);
-                db.SaveChanges();
-            }
+        protected void Application_Start() {
+            Core.Startup.Application.Start();
+//            WebApiConfig.Register(GlobalConfiguration.Configuration);
+//            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+//            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

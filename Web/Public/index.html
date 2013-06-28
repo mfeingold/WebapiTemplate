@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.js"></script>
+    <script>
+        var application = angular.module('application', ['ngResource']);
+        application.service('applicationService',
+            ['$log', '$resource', function 
+            (console, $resource) {
+
+                var applications = [];
+                $resource('/api/applications', {}).get({},
+                    function (result) {
+                        applications = result.theList;
+                    }
+                );
+
+                return {
+                    get: function () { return applications; }
+                };
+            }
+        ]);
+        
+        application.controller('applicationsController',
+            ['$log', '$scope', 'applicationService', function 
+            (console, $scope, service) {
+                $scope.applications = service;
+            }
+
+        ]);
+    </script>
+</head>
+    <body ng-app="application">
+        <div ng-controller="applicationsController">
+            <div ng-repeat="app in applications.get()">{{app}}</div>
+            
+        </div>
+    </body>
+</html>
